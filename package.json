@@ -1,0 +1,29 @@
+{
+    "name": "alest",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.html",
+    "scripts": {
+        "sass": "sass --watch src/scss:dist/css"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "gulp": "^4.0.2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.14.3",
+        "@babel/preset-env": "^7.14.4",
+        "autoprefixer": "^9.8.6",
+        "browser-sync": "^2.26.14",
+        "del": "^6.0.0",
+        "gulp-autoprefixer": "^8.0.0",
+        "gulp-babel": "^8.0.0",
+        "gulp-clean-css": "^4.3.0",
+        "gulp-dart-sass": "^1.0.2",
+        "gulp-group-css-media-queries": "^1.2.2",
+        "gulp-imagemin": "^7.1.0",
+        "node-sass": "^5.0.0",
+        "postcss": "^8.3.0"
+    }
+}
