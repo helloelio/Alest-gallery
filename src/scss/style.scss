@@ -359,8 +359,29 @@ img {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    animation: hideLoader 4s;
+    transition: 4s ease;
 }
-
+@keyframes hideLoader {
+    0% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 0.4;
+    }
+    80% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0;
+    }
+}
 /* modal */
 /* Style the Image Used to Trigger the Modal */
 .myImg {

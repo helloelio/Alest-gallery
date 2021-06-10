@@ -7,35 +7,32 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 var body = document.querySelector('.body'); // функция которая при каждой перезагрузке странницы кидает пользователя к верху страницы
-// *TODO: change from jquery to vanila JS
-// $(window).on('beforeunload', function () {
-//     $(window).scrollTop(0);
-// });
 // *TODO: maybe fix this func and optimization
 
 window.document.addEventListener('DOMContentLoaded', function () {
-  window.document.scrollY = '0';
+  return window.scrollTo({
+    top: 0
+  });
 }); // задержка на прокрутку страницы чтобы успел прогрузиться 'loader'
-// *TODO: change from jquery to vanila JS
-// $(window).on('load', function () {
-//     $('.loader-wrapper').fadeOut(2500);
-// });
+// *TODO: maybe fix this func and optimization
 
 var loader = document.querySelector('.loader-wrapper');
-console.log(loader);
 
-var disableLoader = function disableLoader() {
-  loader.parentNode.removeChild(loader); // loader.classList.toggle('loader-wrapper');
+var deleteLoader = function deleteLoader() {
+  return loader.parentNode.removeChild(loader);
 };
 
-setTimeout(disableLoader, 2500); // по умолчанию у боди класс хидден, функции с задержкой в 2.5 сек убираем этот класс чтобы успела закончиться анимация
-// !my function
+var removeLoader = function removeLoader() {
+  loader.addEventListener('transitionend', deleteLoader());
+};
+
+setTimeout(removeLoader, 3500);
 
 var disableScroll = function disableScroll() {
   return body.classList.remove('hidden');
 };
 
-setTimeout(disableScroll, 2500); // запрещаем при нажатии правой кнопкой на картинку сохранять ее
+setTimeout(disableScroll, 3500); // запрещаем при нажатии правой кнопкой на картинку сохранять ее
 // *TODO: change from jquery to vanila JS
 // $('img').mousedown(function (e) {
 //     if (e.button == 2) {
@@ -77,51 +74,18 @@ span.onclick = function () {
   body.classList.remove('hidden');
 }; // *TODO: change from jquery to vanila JS
 // !Select all links with hashes
-// $('a[href*="#"]')
-//     // !Remove links that don't actually link to anything
-//     .not('[href="#"]')
-//     .not('[href="#0"]')
-//     .click(function (event) {
-//         // On-page links
-//         if (
-//             location.pathname.replace(/^\//, '') ==
-//                 this.pathname.replace(/^\//, '') &&
-//             location.hostname == this.hostname
-//         ) {
-//             // Figure out element to scroll to
-//             var target = $(this.hash);
-//             target = target.length
-//                 ? target
-//                 : $('[name=' + this.hash.slice(1) + ']');
-//             // Does a scroll target exist?
-//             if (target.length) {
-//                 // Only prevent default if animation is actually gonna happen
-//                 event.preventDefault();
-//                 $('html, body').animate(
-//                     {
-//                         scrollTop: target.offset().top,
-//                     },
-//                     1000,
-//                     function () {
-//                         // Callback after animation
-//                         // Must change focus!
-//                         var $target = $(target);
-//                         $target.focus();
-//                         if ($target.is(':focus')) {
-//                             // Checking if the target was focused
-//                             return false;
-//                         } else {
-//                             $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
-//                             $target.focus(); // Set focus again
-//                         }
-//                     }
-//                 );
-//             }
-//         }
-//     });
-// !smooth block arrow-button
-// !my function
 
+
+document.querySelectorAll('a[href^="#"').forEach(function (link) {
+  link.addEventListener('click', function (e) {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}); // !smooth block arrow-button
+// !my function
 
 var arrowToTop = document.getElementById('arrow');
 arrowToTop.style.display = 'none';
