@@ -45,12 +45,23 @@ span.onclick = () => {
 };
 // *TODO: change from jquery to vanila JS
 // !Select all links with hashes
-document.querySelectorAll('a[href^="#"').forEach((link) => {
-    link.addEventListener('click', function (e) {
+// document.querySelectorAll('a[href^="#"').forEach((link) => {
+//     link.addEventListener('click', function (e) {
+//         e.preventDefault();
+//         window.scrollTo({ top: 0, behavior: 'smooth' });
+//     });
+// });
+const anchors = document.querySelectorAll('a[href*="#"]');
+for (let anchor of anchors) {
+    anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const blockID = anchor.getAttribute('href').substr(1);
+        document.getElementById(blockID).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+        });
     });
-});
+}
 // !smooth block arrow-button
 
 // !my function
