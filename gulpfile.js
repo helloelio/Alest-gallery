@@ -1,3 +1,14 @@
+let { src, dest } = require('gulp');
+const gulp = require('gulp');
+const babel = require('gulp-babel');
+const scss = require('gulp-dart-sass');
+const cleanCSS = require('gulp-clean-css');
+const autoprefixer = require('gulp-autoprefixer');
+const imagemin = require('gulp-imagemin');
+const imageminJpegtran = require('imagemin-jpegtran');
+const del = require('del');
+const browsersync = require('browser-sync').create();
+
 let project_folder = 'dist';
 let source_folder = 'src';
 let path = {
@@ -23,36 +34,25 @@ let path = {
     },
     clean: './' + project_folder + '/',
 };
-let { src, dest } = require('gulp');
-const gulp = require('gulp');
-const babel = require('gulp-babel');
-const scss = require('gulp-dart-sass');
-const cleanCSS = require('gulp-clean-css');
-const autoprefixer = require('gulp-autoprefixer');
-const gcmq = require('gulp-group-css-media-queries');
-const imagemin = require('gulp-imagemin');
-const del = require('del');
-const browsersync = require('browser-sync').create();
+
 // *TODO: fix gulp tasks
-function html() {
+//*                 HTML
+const html = () => {
     return src(path.src.html)
         .pipe(dest(path.build.html))
         .pipe(browsersync.stream());
-}
-function css() {
+};
+//*                         Styles
+const styles = () => {
     return src(path.src.css)
         .pipe(scss({ outputStyle: 'expanded' }))
-        .pipe(gcmq())
         .pipe(cleanCSS({ level: 2 }))
-        .pipe(
-            autoprefixer({
-                cascade: false,
-            })
-        )
+        .pipe(autoprefixer())
         .pipe(dest(path.build.css))
         .pipe(browsersync.stream());
-}
-function js() {
+};
+//                      *JavaScript
+const scripts = () => {
     return src(path.src.js)
         .pipe(
             babel({
@@ -61,24 +61,21 @@ function js() {
         )
         .pipe(dest(path.build.js))
         .pipe(browsersync.stream());
-}
-function images() {
+};
+//*                       Images
+const images = () => {
     return src(path.src.img)
         .pipe(
             imagemin([
-                imagemin.gifsicle({ interlaced: false }),
-                imagemin.mozjpeg({ quality: 75, progressive: true }),
-                imagemin.optipng({ optimizationLevel: 5 }),
-                imagemin.svgo({
-                    plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
-                }),
-            ]),
-            { verbose: true }
+                imagemin.optipng({ optimizationLevel: 3 }),
+                imageminJpegtran({ progressive: true }),
+            ])
         )
         .pipe(dest(path.build.img))
         .pipe(browsersync.stream());
-}
-function watch() {
+};
+//*                     Server
+const server = () => {
     browsersync.init({
         server: {
             baseDir: './' + project_folder + '/',
@@ -87,12 +84,16 @@ function watch() {
         },
     });
     gulp.watch([path.watch.html], html);
-    gulp.watch([path.watch.css], css);
-    gulp.watch([path.watch.js], js);
+    gulp.watch([path.watch.css], styles);
+    gulp.watch([path.watch.js], scripts);
     gulp.watch([path.watch.img], images);
-}
-function clean() {
+};
+//*                     Clean Project
+const clean = () => {
     return del(path.clean);
-}
-const dev = gulp.parallel(html, css, js, images);
-exports.default = gulp.series(clean, dev, watch);
+};
+exports.default = gulp.series(
+    clean,
+    gulp.parallel(html, styles, scripts, images),
+    server
+);

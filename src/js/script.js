@@ -1,18 +1,16 @@
-let body = document.querySelector('.body');
+const body = document.querySelector('.body');
+let loader = document.querySelector('.loader-wrapper');
+let closeModalButton = document.getElementsByClassName('close')[0];
 // функция которая при каждой перезагрузке странницы кидает пользователя к верху страницы
-// *TODO: maybe fix this func and optimization
+// *TODO: optimization
 window.document.addEventListener('DOMContentLoaded', () =>
     window.scrollTo({ top: 0 })
 );
 // задержка на прокрутку страницы чтобы успел прогрузиться 'loader'
-// *TODO: maybe fix this func and optimization
-let loader = document.querySelector('.loader-wrapper');
+// *TODO: optimization
 let deleteLoader = () => loader.parentNode.removeChild(loader);
-let removeLoader = () => {
-    loader.addEventListener('transitionend', deleteLoader());
-};
-setTimeout(removeLoader, 3500);
-
+setTimeout(deleteLoader, 3500);
+// *TODO: optimization
 let disableScroll = () => body.classList.remove('hidden');
 setTimeout(disableScroll, 3500);
 // запрещаем при нажатии правой кнопкой на картинку сохранять ее
@@ -23,12 +21,13 @@ setTimeout(disableScroll, 3500);
 //         return false; // do nothing!
 //     }
 // });
-// modal
+
+//*                     MODAL
+
 let modal = document.getElementById('myModal');
 let modalImg = document.getElementById('img01');
 let captionText = document.getElementById('caption');
 const myImages = document.querySelectorAll('.myImg');
-// !my function
 for (let myImage of myImages) {
     myImage.addEventListener('click', function (e) {
         e.preventDefault();
@@ -38,22 +37,17 @@ for (let myImage of myImages) {
         captionText.innerHTML = this.alt;
     });
 }
-let span = document.getElementsByClassName('close')[0];
-span.onclick = () => {
+let closeModal = (e) => {
     modal.style.display = 'none';
     body.classList.remove('hidden');
 };
+closeModalButton.addEventListener('click', closeModal);
+
 // *TODO: change from jquery to vanila JS
 // !Select all links with hashes
-// document.querySelectorAll('a[href^="#"').forEach((link) => {
-//     link.addEventListener('click', function (e) {
-//         e.preventDefault();
-//         window.scrollTo({ top: 0, behavior: 'smooth' });
-//     });
-// });
 const anchors = document.querySelectorAll('a[href*="#"]');
 for (let anchor of anchors) {
-    anchor.addEventListener('click', function (e) {
+    anchor.addEventListener('click', (e) => {
         e.preventDefault();
         const blockID = anchor.getAttribute('href').substr(1);
         document.getElementById(blockID).scrollIntoView({
@@ -63,8 +57,7 @@ for (let anchor of anchors) {
     });
 }
 // !smooth block arrow-button
-
-// !my function
+//*my
 let arrowToTop = document.getElementById('arrow');
 arrowToTop.style.display = 'none';
 arrowToTop.classList.add('arrow-hide');
@@ -73,14 +66,13 @@ let hideButton = () => {
         arrowToTop.style.display = 'none';
     }
 };
-// !my function
-window.addEventListener('scroll', function () {
+//*my
+window.addEventListener('scroll', () => {
     if (window.scrollY > 500) {
         arrowToTop.style.display = 'flex';
         arrowToTop.classList.remove('arrow-hide');
     } else {
         arrowToTop.classList.add('arrow-hide');
         setTimeout(hideButton, 3500);
-        // arrowToTop.style.display = 'none';
     }
 });

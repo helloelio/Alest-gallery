@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.html",
     "scripts": {
-        "sass": "sass --watch src/scss:dist/css"
+        "start": "gulp"
     },
     "author": "",
     "license": "ISC",
@@ -21,8 +21,8 @@
         "gulp-babel": "^8.0.0",
         "gulp-clean-css": "^4.3.0",
         "gulp-dart-sass": "^1.0.2",
-        "gulp-group-css-media-queries": "^1.2.2",
         "gulp-imagemin": "^7.1.0",
+        "imagemin-jpegtran": "^7.0.0",
         "node-sass": "^5.0.0",
         "postcss": "^8.3.0"
     }
