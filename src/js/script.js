@@ -21,8 +21,7 @@ setTimeout(disableScroll, 3500);
 //         return false; // do nothing!
 //     }
 // });
-
-//*                     MODAL
+//*          Modal
 
 let modal = document.getElementById('myModal');
 let modalImg = document.getElementById('img01');
@@ -45,6 +44,7 @@ closeModalButton.addEventListener('click', closeModal);
 
 // *TODO: change from jquery to vanila JS
 // !Select all links with hashes
+// !smooth block arrow-button
 const anchors = document.querySelectorAll('a[href*="#"]');
 for (let anchor of anchors) {
     anchor.addEventListener('click', (e) => {
@@ -56,8 +56,9 @@ for (let anchor of anchors) {
         });
     });
 }
-// !smooth block arrow-button
-//*my
+
+//*        Hide ArrowToTop by default
+
 let arrowToTop = document.getElementById('arrow');
 arrowToTop.style.display = 'none';
 arrowToTop.classList.add('arrow-hide');
@@ -66,7 +67,9 @@ let hideButton = () => {
         arrowToTop.style.display = 'none';
     }
 };
-//*my
+
+//*        Hide arrowToTop
+
 window.addEventListener('scroll', () => {
     if (window.scrollY > 500) {
         arrowToTop.style.display = 'flex';
