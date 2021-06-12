@@ -2,6 +2,7 @@ let { src, dest } = require('gulp');
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
 const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
 const scss = require('gulp-dart-sass');
 const cleanCSS = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
@@ -66,6 +67,7 @@ const scripts = () => {
                 presets: ['@babel/env'],
             })
         )
+        .pipe(uglify())
         .pipe(dest(path.build.js))
         .pipe(browsersync.stream());
 };
