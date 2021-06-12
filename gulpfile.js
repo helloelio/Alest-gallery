@@ -43,8 +43,8 @@ const html = () => {
     return src(path.src.html)
         .pipe(
             htmlmin({
-                collapseWhitespace: true, // удаляем все переносы
-                removeComments: true, // удаляем все комментарии
+                collapseWhitespace: true,
+                removeComments: true,
             })
         )
         .pipe(dest(path.build.html))
