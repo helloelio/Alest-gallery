@@ -1,6 +1,4 @@
 const body = document.querySelector('.body');
-let loader = document.querySelector('.loader-wrapper');
-let closeModalButton = document.getElementsByClassName('close')[0];
 // функция которая при каждой перезагрузке странницы кидает пользователя к верху страницы
 // *TODO: optimization
 window.document.addEventListener('DOMContentLoaded', () =>
@@ -8,35 +6,46 @@ window.document.addEventListener('DOMContentLoaded', () =>
 );
 // задержка на прокрутку страницы чтобы успел прогрузиться 'loader'
 // *TODO: optimization
+
+//*             Loader
+
+let loader = document.querySelector('.loader-wrapper');
 let deleteLoader = () => loader.parentNode.removeChild(loader);
 setTimeout(deleteLoader, 3500);
 // *TODO: optimization
+
+//*             Disable Scroll
+
 let disableScroll = () => body.classList.remove('hidden');
 setTimeout(disableScroll, 3500);
 // запрещаем при нажатии правой кнопкой на картинку сохранять ее
-// *TODO: change from jquery to vanila JS
+// *TODO: change from jquery to vanila JS (disable download images)
 // $('img').mousedown(function (e) {
 //     if (e.button == 2) {
 //         // right click
 //         return false; // do nothing!
 //     }
 // });
-//*          Modal
+
+//*             Modal
 
 let modal = document.getElementById('myModal');
 let modalImg = document.getElementById('img01');
 let captionText = document.getElementById('caption');
-const myImages = document.querySelectorAll('.myImg');
-for (let myImage of myImages) {
-    myImage.addEventListener('click', (e) => {
-        e.preventDefault();
+let myImages = document.querySelectorAll('.myImg');
+myImages.forEach((myImage) => {
+    myImage.addEventListener('click', () => {
         body.classList.add('hidden');
         modal.style.display = 'block';
-        modalImg.src = this.src;
-        captionText.innerHTML = this.alt;
+        modalImg.src = myImage.src;
+        captionText.innerHTML = myImage.alt;
     });
-}
-let closeModal = (e) => {
+});
+
+//*           Close Modal
+
+let closeModalButton = document.getElementsByClassName('close')[0];
+let closeModal = () => {
     modal.style.display = 'none';
     body.classList.remove('hidden');
 };
@@ -45,8 +54,11 @@ closeModalButton.addEventListener('click', closeModal);
 // *TODO: change from jquery to vanila JS
 // !Select all links with hashes
 // !smooth block arrow-button
+
+//*             Anchors
+
 const anchors = document.querySelectorAll('a[href*="#"]');
-for (let anchor of anchors) {
+anchors.forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
         e.preventDefault();
         const blockID = anchor.getAttribute('href').substr(1);
@@ -55,8 +67,7 @@ for (let anchor of anchors) {
             block: 'start',
         });
     });
-}
-
+});
 //*        Hide ArrowToTop by default
 
 let arrowToTop = document.getElementById('arrow');
