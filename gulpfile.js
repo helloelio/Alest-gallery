@@ -1,5 +1,6 @@
 let { src, dest } = require('gulp');
 const gulp = require('gulp');
+const htmlmin = require('gulp-htmlmin');
 const babel = require('gulp-babel');
 const scss = require('gulp-dart-sass');
 const cleanCSS = require('gulp-clean-css');
@@ -39,6 +40,12 @@ let path = {
 //*                 HTML
 const html = () => {
     return src(path.src.html)
+        .pipe(
+            htmlmin({
+                collapseWhitespace: true, // удаляем все переносы
+                removeComments: true, // удаляем все комментарии
+            })
+        )
         .pipe(dest(path.build.html))
         .pipe(browsersync.stream());
 };
