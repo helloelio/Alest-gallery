@@ -20,6 +20,7 @@ let disableScroll = () => body.classList.remove('hidden');
 setTimeout(disableScroll, 3500);
 // запрещаем при нажатии правой кнопкой на картинку сохранять ее
 // *TODO: change from jquery to vanila JS (disable download images)
+
 // $('img').mousedown(function (e) {
 //     if (e.button == 2) {
 //         // right click
@@ -42,14 +43,24 @@ myImages.forEach((myImage) => {
     });
 });
 
-//*           Close Modal
+//*           Close Modal by button
 
 let closeModalButton = document.getElementsByClassName('close')[0];
-let closeModal = () => {
+let closeModalByButton = () => {
     modal.style.display = 'none';
     body.classList.remove('hidden');
 };
-closeModalButton.addEventListener('click', closeModal);
+closeModalButton.addEventListener('click', closeModalByButton);
+
+//*           Close Modal by ESCAPE
+
+let closeModalByEscape = (e) => {
+    if (e.key == 'Escape') {
+        modal.style.display = 'none';
+        body.classList.remove('hidden');
+    }
+};
+window.addEventListener('keydown', closeModalByEscape);
 
 // *TODO: change from jquery to vanila JS
 // !Select all links with hashes
