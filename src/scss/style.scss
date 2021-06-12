@@ -76,7 +76,6 @@ img {
     border-radius: 15px;
     background-color: rgba(186, 15, 49, 0.5);
     border: 1px solid #ffffff1a;
-    backdrop-filter: blur(30px);
     color: #fff;
     filter: drop-shadow(1px 2px 3px black);
     font-size: 1.7rem;
@@ -103,7 +102,6 @@ img {
     background-color: rgba(186, 15, 49, 0.5);
     border: 1px solid #ffffff1a;
     -webkit-backdrop-filter: blur(30px);
-    backdrop-filter: blur(30px);
     color: #fff;
     filter: drop-shadow(1px 2px 3px #000);
     transition: 0.5s;
@@ -192,7 +190,6 @@ img {
         p {
             background: rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(2px);
             -webkit-backdrop-filter: blur(2px);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
@@ -241,8 +238,7 @@ img {
         border-radius: 15px;
         background-color: rgba(186, 15, 49, 0.5);
         border: 1px solid #ffffff1a;
-        -webkit-backdrop-filter: blur(30px);
-        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px)
         color: #fff;
         filter: drop-shadow(1px 2px 3px #000);
         padding: 20px;
@@ -267,7 +263,6 @@ img {
         .gallery__item {
             background: rgb(47 36 64 / 25%);
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
