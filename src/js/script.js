@@ -28,7 +28,7 @@ let modalImg = document.getElementById('img01');
 let captionText = document.getElementById('caption');
 const myImages = document.querySelectorAll('.myImg');
 for (let myImage of myImages) {
-    myImage.addEventListener('click', function (e) {
+    myImage.addEventListener('click', (e) => {
         e.preventDefault();
         body.classList.add('hidden');
         modal.style.display = 'block';
