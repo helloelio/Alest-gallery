@@ -1,9 +1,10 @@
 const body = document.querySelector('.body');
 // функция которая при каждой перезагрузке странницы кидает пользователя к верху страницы
 // *TODO: optimization
-window.document.addEventListener('DOMContentLoaded', () =>
-    window.scrollTo({ top: 0 })
-);
+const scrollToTop = () => {
+    window.scrollTo({ top: 0 });
+};
+window.document.addEventListener('DOMContentLoaded', scrollToTop);
 // задержка на прокрутку страницы чтобы успел прогрузиться 'loader'
 // *TODO: optimization
 
@@ -42,6 +43,8 @@ myImages.forEach((myImage) => {
         captionText.innerHTML = myImage.alt;
     });
 });
+
+let openModal = () => {};
 
 //*           Close Modal by button
 
