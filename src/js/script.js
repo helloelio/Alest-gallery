@@ -37,6 +37,10 @@ let modal = document.getElementById('myModal');
 let modalImg = document.getElementById('img01');
 let captionText = document.getElementById('caption');
 let myImages = document.querySelectorAll('.myImg');
+let closeModalButton = document.getElementsByClassName('close')[0];
+
+//*           Open modal
+
 myImages.forEach((myImage) => {
     myImage.addEventListener('click', () => {
         body.classList.add('hidden');
@@ -48,7 +52,6 @@ myImages.forEach((myImage) => {
 
 //*           Close Modal by button
 
-let closeModalButton = document.getElementsByClassName('close')[0];
 let closeModalByButton = () => {
     modal.style.display = 'none';
     body.classList.remove('hidden');
