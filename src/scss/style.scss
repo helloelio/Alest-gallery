@@ -456,7 +456,7 @@ img {
 }
 .close:hover,
 .close:focus {
-    color: #bbb;
+    color: $btn-bg-color;
     text-decoration: none;
     cursor: pointer;
 }
