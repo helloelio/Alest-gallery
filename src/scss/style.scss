@@ -537,11 +537,11 @@ img {
         grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 50px;
     }
-    .gallery__list-title {
-        font-size: 3rem !important;
+    .gallery__header .gallery__list-title {
+        font-size: 3rem;
     }
-    .gallery__list-item {
-        font-size: 2rem !important;
+    .gallery__header .gallery__list-item {
+        font-size: 2rem;
     }
     .modal-content {
         max-width: 900px;
@@ -567,11 +567,11 @@ img {
     }
 }
 @media only screen and (min-width: 1241px) {
-    .gallery__list-title {
-        font-size: 3rem !important;
+    .gallery__header .gallery__list-title {
+        font-size: 3rem;
     }
-    .gallery__list-item {
-        font-size: 2.5rem !important;
+    .gallery__header .gallery__list-item {
+        font-size: 2.5rem;
     }
 }
 @media only screen and (min-width: 1555px) {
