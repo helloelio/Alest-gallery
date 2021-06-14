@@ -19,8 +19,10 @@ setTimeout(deleteLoader, 3500);
 
 let disableScroll = () => body.classList.remove('hidden');
 setTimeout(disableScroll, 3500);
-// запрещаем при нажатии правой кнопкой на картинку сохранять ее
+
 // *TODO: change from jquery to vanila JS (disable download images)
+
+//*             Disable image downloads
 
 // $('img').mousedown(function (e) {
 //     if (e.button == 2) {
@@ -43,8 +45,6 @@ myImages.forEach((myImage) => {
         captionText.innerHTML = myImage.alt;
     });
 });
-
-let openModal = () => {};
 
 //*           Close Modal by button
 
