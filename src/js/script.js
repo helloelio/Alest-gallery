@@ -105,7 +105,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-//*         add alert to redirect
+//*         add alert to redirect to social
 
 let socialLinks = document.querySelectorAll('.social-link');
 socialLinks.forEach((socialLink) => {
