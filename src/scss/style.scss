@@ -208,6 +208,9 @@ img {
         display: block;
         transition: 0.2s ease;
     }
+    .navigation__link:focus {
+        border: 1px solid $bgcolor-main;
+    }
     .navigation__item:hover {
         opacity: 0.8;
     }
