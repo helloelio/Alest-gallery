@@ -104,3 +104,26 @@ window.addEventListener('scroll', () => {
         setTimeout(hideButton, 3500);
     }
 });
+
+//*         add alert to redirect
+
+let socialLinks = document.querySelectorAll('.social-link');
+socialLinks.forEach((socialLink) => {
+    socialLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (document.documentElement.lang == 'ru') {
+            let applyRu = confirm(
+                'Вы уверены что хотите перейти на: ' + e.currentTarget.href
+            );
+            if (applyRu) {
+                window.location = e.currentTarget.href;
+            }
+        }
+        if (document.documentElement.lang == 'en') {
+            let applyEn = confirm('You sure to go: ' + e.currentTarget.href);
+            if (applyEn) {
+                window.location = e.currentTarget.href;
+            }
+        }
+    });
+});
