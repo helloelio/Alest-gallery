@@ -20,8 +20,6 @@ setTimeout(deleteLoader, 3500);
 let disableScroll = () => body.classList.remove('hidden');
 setTimeout(disableScroll, 3500);
 
-// *TODO: change from jquery to vanila JS (disable download images)
-
 //*             Disable image downloads
 
 let images = document.querySelectorAll('img');
@@ -68,7 +66,6 @@ let closeModalByEscape = (e) => {
 };
 window.addEventListener('keydown', closeModalByEscape);
 
-// *TODO: change from jquery to vanila JS
 // !Select all links with hashes
 // !smooth block arrow-button
 
