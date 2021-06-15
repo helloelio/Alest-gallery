@@ -6,6 +6,7 @@ const scrollToTop = () => {
 };
 window.document.addEventListener('DOMContentLoaded', scrollToTop);
 // задержка на прокрутку страницы чтобы успел прогрузиться 'loader'
+
 // *TODO: optimization
 
 //*             Loader
@@ -13,6 +14,7 @@ window.document.addEventListener('DOMContentLoaded', scrollToTop);
 let loader = document.querySelector('.loader-wrapper');
 let deleteLoader = () => loader.parentNode.removeChild(loader);
 setTimeout(deleteLoader, 3500);
+
 // *TODO: optimization
 
 //*             Disable Scroll
@@ -22,20 +24,20 @@ setTimeout(disableScroll, 3500);
 
 //*             Disable image downloads
 
-let images = document.querySelectorAll('img');
+const images = document.querySelectorAll('img');
 images.forEach((image) => {
-    image.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
+    image.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
     });
 });
 
 //*             Modal
 
-let modal = document.getElementById('myModal');
-let modalImg = document.getElementById('img01');
-let captionText = document.getElementById('caption');
-let myImages = document.querySelectorAll('.myImg');
-let closeModalButton = document.getElementsByClassName('close')[0];
+const modal = document.getElementById('myModal');
+const modalImg = document.getElementById('img01');
+const captionText = document.getElementById('caption');
+const myImages = document.querySelectorAll('.myImg');
+const closeModalButton = document.getElementsByClassName('close')[0];
 
 //*           Open modal
 
@@ -58,8 +60,8 @@ closeModalButton.addEventListener('click', closeModalByButton);
 
 //*           Close Modal by ESCAPE
 
-let closeModalByEscape = (e) => {
-    if (e.key == 'Escape') {
+let closeModalByEscape = (event) => {
+    if (event.key == 'Escape') {
         modal.style.display = 'none';
         body.classList.remove('hidden');
     }
@@ -73,8 +75,8 @@ window.addEventListener('keydown', closeModalByEscape);
 
 const anchors = document.querySelectorAll('a[href*="#"]');
 anchors.forEach((anchor) => {
-    anchor.addEventListener('click', (e) => {
-        e.preventDefault();
+    anchor.addEventListener('click', (event) => {
+        event.preventDefault();
         const blockID = anchor.getAttribute('href').substr(1);
         document.getElementById(blockID).scrollIntoView({
             behavior: 'smooth',
@@ -84,14 +86,15 @@ anchors.forEach((anchor) => {
 });
 //*        Hide ArrowToTop by default
 
-let arrowToTop = document.getElementById('arrow');
+const arrowToTop = document.getElementById('arrow');
+const arrowClassLists = arrowToTop.classList;
 arrowToTop.style.display = 'none';
-arrowToTop.classList.add('arrow-hide');
-let hideButton = () => {
-    if (arrowToTop.classList[1] == 'arrow-hide') {
+
+arrowClassLists.forEach((arrowClassList) => {
+    if (arrowClassList == 'arrow-hide') {
         arrowToTop.style.display = 'none';
     }
-};
+});
 
 //*        Hide arrowToTop
 
@@ -101,7 +104,6 @@ window.addEventListener('scroll', () => {
         arrowToTop.classList.remove('arrow-hide');
     } else {
         arrowToTop.classList.add('arrow-hide');
-        setTimeout(hideButton, 3500);
     }
 });
 
@@ -109,8 +111,8 @@ window.addEventListener('scroll', () => {
 
 let socialLinks = document.querySelectorAll('.social-link');
 socialLinks.forEach((socialLink) => {
-    socialLink.addEventListener('click', (e) => {
-        e.preventDefault();
+    socialLink.addEventListener('click', (event) => {
+        event.preventDefault();
         if (document.documentElement.lang == 'ru') {
             let applyRu = confirm(
                 'Вы уверены что хотите перейти на: ' + e.currentTarget.href
@@ -122,7 +124,7 @@ socialLinks.forEach((socialLink) => {
         if (document.documentElement.lang == 'en') {
             let applyEn = confirm('You sure to go: ' + e.currentTarget.href);
             if (applyEn) {
-                window.location = e.currentTarget.href;
+                window.location = event.currentTarget.href;
             }
         }
     });
