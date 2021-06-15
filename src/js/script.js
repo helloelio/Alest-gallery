@@ -24,12 +24,12 @@ setTimeout(disableScroll, 3500);
 
 //*             Disable image downloads
 
-// $('img').mousedown(function (e) {
-//     if (e.button == 2) {
-//         // right click
-//         return false; // do nothing!
-//     }
-// });
+let images = document.querySelectorAll('img');
+images.forEach((image) => {
+    image.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+    });
+});
 
 //*             Modal
 
