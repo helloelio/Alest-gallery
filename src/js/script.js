@@ -90,11 +90,11 @@ const arrowToTop = document.getElementById('arrow');
 const arrowClassLists = arrowToTop.classList;
 arrowToTop.style.display = 'none';
 
-arrowClassLists.forEach((arrowClassList) => {
-    if (arrowClassList == 'arrow-hide') {
+for (let i = 0; i <= arrowClassLists.length; i++) {
+    if (arrowClassLists[i] == 'arrow-hide') {
         arrowToTop.style.display = 'none';
     }
-});
+}
 
 //*        Hide arrowToTop
 
