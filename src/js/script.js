@@ -2,7 +2,7 @@ const body = document.querySelector('.body');
 // функция которая при каждой перезагрузке странницы кидает пользователя к верху страницы
 // *TODO: optimization
 const scrollToTop = () => {
-    window.scrollTo({ top: 0 });
+  window.scrollTo({ top: 0 });
 };
 window.document.addEventListener('DOMContentLoaded', scrollToTop);
 // задержка на прокрутку страницы чтобы успел прогрузиться 'loader'
@@ -26,9 +26,9 @@ setTimeout(disableScroll, 3500);
 
 const images = document.querySelectorAll('img');
 images.forEach((image) => {
-    image.addEventListener('contextmenu', (event) => {
-        event.preventDefault();
-    });
+  image.addEventListener('contextmenu', (event) => {
+    event.preventDefault();
+  });
 });
 
 //*             Modal
@@ -42,29 +42,29 @@ const closeModalButton = document.getElementsByClassName('close')[0];
 //*           Open modal
 
 myImages.forEach((myImage) => {
-    myImage.addEventListener('click', () => {
-        body.classList.add('hidden');
-        modal.style.display = 'block';
-        modalImg.src = myImage.src;
-        captionText.innerHTML = myImage.alt;
-    });
+  myImage.addEventListener('click', () => {
+    body.classList.add('hidden');
+    modal.style.display = 'block';
+    modalImg.src = myImage.src;
+    captionText.innerHTML = myImage.alt;
+  });
 });
 
 //*           Close Modal by button
 
 let closeModalByButton = () => {
-    modal.style.display = 'none';
-    body.classList.remove('hidden');
+  modal.style.display = 'none';
+  body.classList.remove('hidden');
 };
 closeModalButton.addEventListener('click', closeModalByButton);
 
 //*           Close Modal by ESCAPE
 
 let closeModalByEscape = (event) => {
-    if (event.key == 'Escape') {
-        modal.style.display = 'none';
-        body.classList.remove('hidden');
-    }
+  if (event.key == 'Escape') {
+    modal.style.display = 'none';
+    body.classList.remove('hidden');
+  }
 };
 window.addEventListener('keydown', closeModalByEscape);
 
@@ -75,14 +75,14 @@ window.addEventListener('keydown', closeModalByEscape);
 
 const anchors = document.querySelectorAll('a[href*="#"]');
 anchors.forEach((anchor) => {
-    anchor.addEventListener('click', (event) => {
-        event.preventDefault();
-        const blockID = anchor.getAttribute('href').substr(1);
-        document.getElementById(blockID).scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-        });
+  anchor.addEventListener('click', (event) => {
+    event.preventDefault();
+    const blockID = anchor.getAttribute('href').substr(1);
+    document.getElementById(blockID).scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
     });
+  });
 });
 //*        Hide ArrowToTop by default
 
@@ -91,43 +91,41 @@ const arrowClassLists = arrowToTop.classList;
 arrowToTop.style.display = 'none';
 
 for (let i = 0; i <= arrowClassLists.length; i++) {
-    if (arrowClassLists[i] == 'arrow-hide') {
-        arrowToTop.style.display = 'none';
-    }
+  if (arrowClassLists[i] == 'arrow-hide') {
+    arrowToTop.style.display = 'none';
+  }
 }
 
 //*        Hide arrowToTop
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 500) {
-        arrowToTop.style.display = 'flex';
-        arrowToTop.classList.remove('arrow-hide');
-    } else {
-        arrowToTop.classList.add('arrow-hide');
-    }
+  if (window.scrollY > 500) {
+    arrowToTop.style.display = 'flex';
+    arrowToTop.classList.remove('arrow-hide');
+  } else {
+    arrowToTop.classList.add('arrow-hide');
+  }
 });
 
 //*         add alert to redirect to social
 
 let socialLinks = document.querySelectorAll('.social-link');
 socialLinks.forEach((socialLink) => {
-    socialLink.addEventListener('click', (event) => {
-        event.preventDefault();
-        if (document.documentElement.lang == 'ru') {
-            let applyRu = confirm(
-                'Вы уверены что хотите перейти на: ' + event.currentTarget.href
-            );
-            if (applyRu) {
-                window.location = event.currentTarget.href;
-            }
-        }
-        if (document.documentElement.lang == 'en') {
-            let applyEn = confirm(
-                'You sure to go: ' + event.currentTarget.href
-            );
-            if (applyEn) {
-                window.location = event.currentTarget.href;
-            }
-        }
-    });
+  socialLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (document.documentElement.lang == 'ru') {
+      let applyRu = confirm(
+        'Вы уверены что хотите перейти на: ' + event.currentTarget.href
+      );
+      if (applyRu) {
+        window.location = event.currentTarget.href;
+      }
+    }
+    if (document.documentElement.lang == 'en') {
+      let applyEn = confirm('You sure to go: ' + event.currentTarget.href);
+      if (applyEn) {
+        window.location = event.currentTarget.href;
+      }
+    }
+  });
 });
