@@ -8,22 +8,17 @@ window.document.addEventListener('DOMContentLoaded', scrollToTop);
 // задержка на прокрутку страницы чтобы успел прогрузиться 'loader'
 
 // *TODO: optimization
-
 //*             Loader
-
 let loader = document.querySelector('.loader-wrapper');
 let deleteLoader = () => loader.parentNode.removeChild(loader);
 setTimeout(deleteLoader, 3500);
 
 // *TODO: optimization
-
 //*             Disable Scroll
-
 let disableScroll = () => body.classList.remove('hidden');
 setTimeout(disableScroll, 3500);
 
 //*             Disable image downloads
-
 const images = document.querySelectorAll('img');
 images.forEach((image) => {
   image.addEventListener('contextmenu', (event) => {
@@ -32,7 +27,6 @@ images.forEach((image) => {
 });
 
 //*             Modal
-
 const modal = document.getElementById('myModal');
 const modalImg = document.getElementById('img01');
 const captionText = document.getElementById('caption');
@@ -40,7 +34,6 @@ const myImages = document.querySelectorAll('.myImg');
 const closeModalButton = document.getElementsByClassName('close')[0];
 
 //*           Open modal
-
 myImages.forEach((myImage) => {
   myImage.addEventListener('click', () => {
     body.classList.add('hidden');
@@ -51,7 +44,6 @@ myImages.forEach((myImage) => {
 });
 
 //*           Close Modal by button
-
 let closeModalByButton = () => {
   modal.style.display = 'none';
   body.classList.remove('hidden');
@@ -59,7 +51,6 @@ let closeModalByButton = () => {
 closeModalButton.addEventListener('click', closeModalByButton);
 
 //*           Close Modal by ESCAPE
-
 let closeModalByEscape = (event) => {
   if (event.key == 'Escape') {
     modal.style.display = 'none';
@@ -89,14 +80,13 @@ anchors.forEach((anchor) => {
 const arrowToTop = document.getElementById('arrow');
 const arrowClassLists = arrowToTop.classList;
 arrowToTop.style.display = 'none';
-
 for (let i = 0; i <= arrowClassLists.length; i++) {
   if (arrowClassLists[i] == 'arrow-hide') {
     arrowToTop.style.display = 'none';
   }
 }
 
-//*        Hide arrowToTop
+//*         Hide arrowToTop
 
 window.addEventListener('scroll', () => {
   if (window.scrollY > 500) {
